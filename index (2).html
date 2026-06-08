@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Booking System</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background: purple;   /* hapa ndiyo umeweka rangi ya kijani */
+    padding: 100px;
+    }
+    .booking-form {
+      background: purple;
+      padding: 200px;
+      border-radius: 6px;
+      max-width: 300px;
+      margin: auto;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: blue;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: brown;
+    }
+    #status {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="booking-form">
+    <h2>Bus Ticket Booking</h2>
+    <form id="busForm">
+      <label for="name">Full Name:</label>
+     <label for="company">full name:</label>
+      <input type="text" id="name" required>
+    
+       <select id="company" required>
+        <option value="">--Select Company--</option>
+        <option value="Abood">Abood</option>
+        <option value="Lukwele">Lukwele</option>
+        <option value="Allsaid">Allsaid</option>
+        <option value="Nyeng'unge">Nyeng'unge</option>
+        <option value="Shigaka">Shigaka</option>
+        <option value="Kakakuona">Kakakuona</option>
+        <option value="Kilamsa">Kilamsa</option>
+      </select>
+
+      <label for="route">Route:</label>
+      <select id="route" required>
+        <option value="">--Select Route--</option>
+        <option value="Morogoro - kilosa">Morogoro - kilosa</option>
+        <option value="Dodoma - Shinyanga">Dodoma - Shinyanga</option>
+        <option value="Mwanza - Katoro">Mwanza - Katoro</option>
+        <option value="mbeya - Tukuyu">Mbeya - Tukuyu</option>
+        <option value="Tanga - Moshi">Tanga - Moshi</option>
+      </select>
+
+      <label for="date">Travel Date:</label>
+      <input type="date" id="date" required>
+
+      <label for="tickets">Number of Tickets:</label>
+      <input type="number" id="tickets" min="1" required>
+
+      <button type="submit">Book Now</button>
+    </form>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('busForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const route = document.getElementById('route').value;
+      const date = document.getElementById('date').value;
+      const tickets = document.getElementById('tickets').value;
+
+      if(name && route && date && tickets > 0){
+        status.innerHTML = "✅ Booking successful! " + name + 
+          " booked " + tickets + " ticket(s) for " + route + " on " + date + ".";
+
+        const record = document.createElement('div');
+        record.className = "record";
+        record.innerHTML = name + " booked " + tickets + " ticket(s) with " + company + 
+                           " for " + route + " on " + date;
+        recordList.appendChild(record);
+   
+     form.reset();
+      } else {
+        status.innerHTML = "❌ Please fill all fields correctly.";
+      }
+    });
+  </script>
+
+</body>
+</html>
